@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<#include "layout.html"/>
+<html>
+<@head/>
+<body>
+<@north/>
+
+<div class="container">
+    <div class="row ">
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <div class="jumbotron">
+
+        <div class="row">
+            <div class="col-xs-12 col-md-12 text-center">
+                <button type="button" class="btn btn-warning btn-sm btn-block" data-toggle="modal" data-target="#mailInfo">
+                    <span class="glyphicon glyphicon-fire">咨询请猛戳</span>
+                </button>
+                <br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6 col-md-3">
+                <div class="thumbnail">
+                    <img data-src="holder.js/300x300" src="${base}/styles/images/other/mail.png" alt="电子邮件">
+                    <div class="caption text-center"><span class="label label-warning">ktmswzw@gmail.com</span></div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <div class="thumbnail">
+                    <img data-src="holder.js/300x300" src="${base}/styles/images/other/tel.png" alt="联系电话">
+                    <div class="caption text-center"><span class="label label-warning">Tel: 15869100507</span></div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <div class="thumbnail">
+                    <img data-src="holder.js/300x300" src="${base}/styles/images/other/qq.png" alt="qq">
+                    <div class="caption text-center"><span class="label label-success">QQ：224911261</span></div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <div class="thumbnail">
+                    <img data-src="holder.js/300x300" src="${base}/styles/images/other/wx.png" alt="qq">
+                    <div class="caption text-center"><span class="label label-danger">微信：224911261</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+
+    <form role="form" onsubmit="return check();" action="${base}/business/opportunities/saveAdd" method="post" commandName="opportunities">
+        <div class="modal fade" id="mailInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">客户虐吾千百遍，吾待客户如初恋</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="email">您的邮箱地址</label>
+                            <input type="email" class="form-control" id="email" name="email" maxlength="50" placeholder="输入邮箱 123@gmail.com" required="required" >
+                        </div>
+                        <div class="form-group">
+                            <label for="leftWord">您的留言和建议</label>
+                            <textarea rows="3" class="form-control" id="leftWord" name="leftWord" maxlength="500" placeholder="您对产品的咨询或者建议" required="required" ></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="ok" class="btn btn-success" >发送</button>
+                        <button type="button" id="exit" class="btn btn-danger" data-dismiss="modal" >关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+
+</div><!-- /.container -->
+
+<@south/>
+</body>
+<@foot/>
+<script type="application/javascript">
+    function check() {
+        document.getElementById('ok').disabled = 'disabled';
+    }
+    var current = "${(current)!}";
+</script>
+</html>

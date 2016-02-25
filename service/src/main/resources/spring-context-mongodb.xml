@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/data/mongo 
+	http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 通过工厂Bean创建mongo连接实例-->
+    <mongo:db-factory
+                      host="${mongodb.host}"
+                      port="${mongodb.port}"
+                      dbname="${mongodb.database}"
+                      username="${mongodb.user}"
+                      password="${mongodb.pwd}"
+                      />
+    <!--
+                          username="${mongodb.user}"
+                          password="${mongodb.pwd}"-->
+    <!-- mongo模板操作对象 -->
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+    </bean>
+
+    <!-- MongoDB GridFS Template 支持，操作mongodb存放的文件 -->
+    <mongo:mapping-converter id="converter" db-factory-ref="mongoDbFactory"/>
+
+    <bean id="gridFsTemplate" class="org.springframework.data.mongodb.gridfs.GridFsTemplate">
+        <constructor-arg ref="mongoDbFactory"/>
+        <constructor-arg ref="converter"/>
+    </bean>
+
+</beans>

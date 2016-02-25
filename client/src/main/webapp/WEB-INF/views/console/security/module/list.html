@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<#include "/console/layout/main.html"/>
+<@head/>
+<body>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">模块管理</div>
+        <div class="panel-body">
+            <table id="tableB" class="table-hover table-condensed table-striped">
+                <thead>
+                <tr>
+                    <th data-field="state" data-radio="true">ID</th>
+                    <th data-field="id" class="col-md-1">ID</th>
+                    <th data-field="name" class="col-md-2">名称</th>
+                    <th data-field="url" class="col-md-3">路径</th>
+                    <th data-field="description" class="col-md-3">描述</th>
+                    <th data-field="parentId" class="col-md-1" data-sortable="true">上级ID</th>
+                    <th data-field="sn" class="col-md-1">SN</th>
+                    <th data-field="priority" class="col-md-1" data-formatter="priorityFormatter">优先级</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div><!--/.container-->
+<div id="custom-toolbar">
+    <form role="form" name="form" id="form1">
+        <div class="form-inline" role="form">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <select class="form-control " id="search_select" name="search_select">
+                        <option value="search_name">名称</option>
+                        <option value="search_url">路径</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="输入查询条件" id="search"
+                               name="search_username">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" id="query" name="query" title="查询"><span
+                                    class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="btn-group" id="do">
+                        <@shiro.hasPermission name="Module:save">
+                        <button type="button" class="btn btn-default" id="add" name="add" title="新增" ><span
+                                class="glyphicon glyphicon-plus"></span></button>
+                    </@shiro.hasPermission>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="to" style="display:none;">
+    <@shiro.hasPermission name="Module:edit">
+    <button type="button" class="btn btn-default" id="modify" name="modify" title="修改"><span
+            class="glyphicon glyphicon-edit"></span></button>
+</@shiro.hasPermission>
+<@shiro.hasPermission name="Module:delete">
+<button type="button" class="btn btn-default" id="delete" name="delete" title="删除"><span
+        class="glyphicon glyphicon-remove"></span></button>
+</@shiro.hasPermission>
+</div>
+</body>
+<@foot/>
+<script src="${base}/styles/js/module/security/module/list.js"></script>
+</html>

@@ -1,0 +1,102 @@
+
+<#macro head>
+    <head>
+        <title>iManon IDC OA CRM 2</title>
+        <meta charset="UTF-8">
+        <link rel="icon" href="${base}/styles/images/logo/muyu.png" type="image/png" >
+        <link href="${base}/styles/css/bootstrap.css" rel="stylesheet">
+        <link href="${base}/styles/css/bootstrap-theme.css" rel="stylesheet">
+        <link href="${base}/styles/css/carousel.css" rel="stylesheet">
+        <script src="${base}/styles/js/libs/ie-emulation-modes-warning.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    </head>
+</#macro>
+
+
+<#macro headMap>
+    <head>
+        <title>iManon IDC OA CRM 2</title>
+        <meta charset="UTF-8">
+        <link rel="icon" href="${base}/styles/images/logo/muyu.png" type="image/png" >
+        <link href="${base}/styles/css/bootstrap.css" rel="stylesheet">
+        <link href="${base}/styles/css/bootstrap-theme.css" rel="stylesheet">
+        <link href="${base}/styles/css/carousel.css" rel="stylesheet">
+        <link href="${base}/styles/css/module/map.css" rel="stylesheet">
+        <link href="${base}/styles/sco/css/scojs.css" rel="stylesheet">
+        <script src="${base}/styles/js/libs/ie-emulation-modes-warning.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    </head>
+</#macro>
+
+
+<#macro north>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse navbar-static-top" role="navigation" id="nav">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">iManon IDC OA CRM </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li id="index"><a href="${base}/">主页</a></li>
+                            <li id="about"><a href="${base}/about">关于</a></li>
+                            <li id="contact"><a href="${base}/contact">联系</a></li>
+                            <li id="map"><a href="${base}/map"><span class="glyphicon glyphicon-globe">&nbsp;热点</span> </a></li>
+                            <li ><a href="${base}/login">体验</a></li>
+                        </ul>
+                    </div>
+                    <!--/.navbar-collapse -->
+                </div>
+            </nav>
+
+        </div>
+    </div>
+</#macro>
+
+<#macro west>
+
+</#macro>
+
+<#macro south>
+    <div class="container">
+        <footer>
+            <p class="pull-right"><a href="#">Top</a></p>
+            <p>&copy; 2014 iManon, Inc. &middot; <a href="${base}/privacy">隐私</a> &middot; <a href="/terms">使用条款</a></p>
+        </footer>
+    </div>
+</#macro>
+
+<#macro east>
+
+</#macro>
+
+<#macro foot>
+    <script src="${base}/styles/js/require.js"></script>
+    <script src="${base}/styles/js/module/config.js"></script>
+    <script src="${base}/styles/js/module/sale.js"></script>
+    <script type="application/javascript">
+        var WEB_GLOBAL_CTX = "${base}"; //全局上下文
+    </script>
+</#macro>
+
+
+<#macro footMap>
+    <script src="${base}/styles/js/require.js"></script>
+    <script src="${base}/styles/js/module/config.js"></script>
+    <script src="${base}/styles/js/module/map.js"></script>
+    <script type="text/javascript">
+        var WEB_GLOBAL_CTX = "${base}";
+        var current = "${(current)!}";
+        var cultureList = JSON.parse(JSON.stringify(${cultureList}));
+
+        var map, markerAnimation, myGeo, myIconAn, opts;
+    </script>
+</#macro>

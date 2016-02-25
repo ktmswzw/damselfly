@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<#include "/console/layout/main.html"/>
+<html class="fuelux" >
+<@headEdit/>
+<body>
+<div class="container">
+    <form role="form" id="formSubmit" commandName="role" class="form-horizontal"
+          data-fv-framework="bootstrap"
+          data-fv-message="This value is not valid"
+          data-fv-feedbackicons-valid="glyphicon glyphicon-ok"
+          data-fv-feedbackicons-invalid="glyphicon glyphicon-remove"
+          data-fv-feedbackicons-validating="glyphicon glyphicon-refresh">
+        <!-- Modal -->
+        <div class="panel panel-default">
+            <div class="panel-heading">角色管理</div>
+            <div class="panel-body">
+                <div class="control-group">
+                    <input type="hidden" name="id" id="id"/>
+                </div>
+
+                <div class="row control-group">
+                    <div class="col-sm-2 col-sm-offset-1">
+                        <label class="control-label" for="name">名称</label>
+                    </div>
+                    <div class="col-sm-8 controls">
+                        <input type="text" class="form-control" id="name" name="name" maxlength="50"
+                               placeholder="输入模块名称" size="100" required   />
+                    </div>
+                </div>
+
+
+                <div class="row control-group">
+                    <div class="col-sm-2 col-sm-offset-1">
+                        <label class="control-label" for="description">描述</label>
+                    </div>
+                    <div class="col-sm-8 controls">
+                        <input type="text" class="form-control" id="description" name="description" maxlength="100"
+                               placeholder=""  >
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="panel-footer">
+                <div class="row control-group">
+                    <div class="col-sm-4 col-sm-offset-5">
+                        <div style="align-content: center">
+                            <button type="submit" id="save" class="btn btn-primary" >保存</button>
+                            <button type="button" id="back" class="btn btn-default">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+<!-- /.container -->
+
+</body>
+<@foot/>
+<script src="${base}/styles/js/module/security/role/edit.js"></script>
+<script type="text/javascript">
+    var role = JSON.parse(JSON.stringify(${role}));
+</script>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.damselfly.mapper.SecurityPortalReportMapper" >
+  <resultMap id="ReportResultMap" type="com.damselfly.entity.SecurityPortalReport" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="col_value" property="colValue" jdbcType="DOUBLE" />
+    <result column="col_value_second" property="colValueSecond" jdbcType="DOUBLE" />
+  </resultMap>
+
+    <select id="customTypeSum" resultMap="ReportResultMap" parameterType="java.lang.Integer" >
+        SELECT
+        @rowid:=@rowid+1 as id ,
+        d.dic_value as title,
+        count(1) as col_value
+        FROM business_custom b,
+        (SELECT @rowid:=0) as init,
+		business_dictionary d
+        where b.state = #{state,jdbcType=INTEGER}
+        and d.dic_name = 'CUSTOM-INDUSTRY'
+		and d.dic_key = b.industry_type
+        group by b.industry_type
+    </select>
+
+    <select id="customMonthSum" resultMap="ReportResultMap" parameterType="java.lang.Integer" >
+        SELECT
+        @rowid:=@rowid+1 as id ,
+        DATE_FORMAT(b.create_date,'%Y%m') as title,
+        count(1) as col_value
+        FROM business_custom b,
+        (SELECT @rowid:=0) as init
+        where b.state = #{state,jdbcType=INTEGER}
+        and b.create_date &gt; DATE_ADD(NOW(), INTERVAL -12 MONTH)
+        group by DATE_FORMAT(b.create_date,'%Y%m')
+    </select>
+
+    <select id="serverRoom" resultMap="ReportResultMap" parameterType="java.lang.Integer" >
+    select
+    @rowid:=@rowid + 1 as id,
+    sum(b.s_u_nums) as title,
+    sum(a.sc_u_nums) as col_value
+    from
+        business_server_cabinet a,
+        business_server b,
+        business_server_room c,
+        (SELECT @rowid:=0) as init
+    where
+    a.sc_id = b.sc_id and a.sr_id = c.sr_id
+        and c.sr_id = #{serverRoomId,jdbcType=INTEGER}
+    </select>
+
+    <select id="investMonth" resultMap="ReportResultMap"  >
+        SELECT @rowid:=@rowid + 1 as id,
+            b.title as title,
+            r1.total as col_value,
+            r2.total as col_value_second
+        FROM (SELECT @rowid:=0) as init,
+            report_invest_src b
+                left join
+            report_investmonth r1 ON b.title = r1.title
+                and r1.invest_type = 1
+                left join
+            report_investmonth r2 ON b.title = r2.title
+                and r2.invest_type = 2
+            order by b.title
+    </select>
+
+    <select id="complaintMonth" resultMap="ReportResultMap" >
+        SELECT
+            @rowid:=@rowid + 1 as id,
+            b.title as title,
+            r1.col_value_second as col_value,
+            r2.col_value_second as col_value_second
+        FROM
+            (SELECT @rowid:=0) as init,
+            report_complaint_src b
+                left join
+            report_complaint_month r1 ON b.title = r1.title and r1.col_value = 1
+                left join
+            report_complaint_month r2 ON b.title = r2.title and r2.col_value = 2
+        order by b.title
+    </select>
+
+    <select id="orderMonth" resultMap="ReportResultMap" >
+        select
+            @rowid:=@rowid + 1 as id,
+            ss.realname as title,
+            ss.price as col_value,
+            ss.sum_charged as col_value_second
+        from
+            report_order_month ss,
+            (SELECT @rowid:=0) as init
+        order by ss.price desc
+    </select>
+
+</mapper>

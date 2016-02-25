@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<#include "layout.html"/>
+<html>
+<@headMap/>
+<body>
+<@north/>
+
+
+<div class="container">
+    <div class="row ">
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="row ">
+
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-list-alt"></span><b>文化点亮婺州</b>
+                    <button type="button" class="btn btn-xs btn-danger" id="refresh" data-trigger="hover" rel="popover" data-container="body" data-content='数据来至JHWGX.GOV.CN' data-html="true" data-original-title="数据刷新"><span class="glyphicon glyphicon-refresh"></span></button>
+                </div>
+                <div class="panel-body pbody">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="demo1">
+                                <#list showList as culture>
+                                    <li class="news-item" id="${culture.id}">
+                                        <img src="${base}/styles/images/hljh_bg.png" width="60" class="img-circle" />
+                                        ${culture_index + 1}. <a href="#" name="example" data-trigger="hover" rel="popover" data-container="body" data-content="${(culture.content)!}<br>${(culture.venue)!}<br>" data-html="true" data-original-title="${(culture.cultureType)!}-<b>${(culture.title)!}</b>">
+                                            ${(culture.title)!}
+                                        </a>
+                                    </li>
+                                </#list>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-info">
+                        <div id="allmap" style="height: 540px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<@south/>
+</body>
+<@footMap/>
+</html>

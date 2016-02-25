@@ -1,0 +1,78 @@
+package com.damselfly.service.damselfly.dao;
+
+import com.damselfly.business.{moduleCode};
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.BasicQuery;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.regex.Pattern;
+
+/**
+ * Created by  moxz
+ * User: 224911261@qq.com
+ * 2015/9/14-10:15
+ * HabitServer.com.damselfly.service.damselfly.dao
+ */
+
+@Repository
+public class {moduleCode}Dao {
+    @Autowired
+    private MongoTemplate mongo;
+
+    /**
+     * 根据查询条件获取notice list
+     *
+     * @param notice
+     * @return List<{moduleCode}>
+     */
+    public List<{moduleCode}> get{moduleCode}({moduleCode} notice) {
+
+        DBObject queryObject = new BasicDBObject();
+
+        if (StringUtils.isNotBlank(notice.getHabitId())) {
+            queryObject.put("damselfly_id", notice.getHabitId());
+        }
+
+        if (StringUtils.isNotBlank(notice.getTitle())) {
+            Pattern pattern = Pattern.compile("^.*" + notice.getTitle() + ".*$", Pattern.CASE_INSENSITIVE);
+            queryObject.put("title", pattern);
+        }
+
+        if (StringUtils.isNotBlank(notice.getContent())) {
+            Pattern pattern = Pattern.compile("^.*" + notice.getContent() + ".*$", Pattern.CASE_INSENSITIVE);
+            queryObject.put("content", pattern);
+        }
+        queryObject.put("state", 1);
+        Query query = new BasicQuery(queryObject);
+        query.with(new Sort(Sort.Direction.DESC, "name"));
+
+        return mongo.find(query, {moduleCode}.class);
+    }
+
+    /**
+     * 保存notice
+     *
+     * @param notice bean
+     * @return
+     */
+    public void save({moduleCode} notice) {
+        mongo.save(notice);
+    }
+
+    /**
+     * 查找notice
+     *
+     * @param id
+     * @return
+     */
+    public {moduleCode} find(String id) {
+        return mongo.findById(id, {moduleCode}.class);
+    }
+}

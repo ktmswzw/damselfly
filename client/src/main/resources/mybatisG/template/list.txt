@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<#include "/console/layout/main.html"/>
+<@head/>
+<body>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">{moduleName}管理</div>
+        <div class="panel-body">
+            <table id="tableB" class="table-hover table-condensed table-striped">
+                <thead>
+                <tr>
+                    {columnsShowDiv}
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div><!--/.container-->
+<div id="custom-toolbar">
+    <form role="form" name="form" id="form1">
+        <div class="form-inline" role="form">
+            <div class="row">
+                <div class="col-md-3">
+                    <select class="form-control " id="search_select" name="search_select">
+                    {searchTypeDiv}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="输入查询条件" id="search"
+                               name="search_username">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" id="query" name="query" title="查询"><span
+                                    class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="btn-group" id="do">
+                        <@shiro.hasPermission name="{moduleCode}:save">
+                        <button type="button" class="btn btn-default" id="add" name="add" title="新增" ><span
+                                class="glyphicon glyphicon-plus"></span></button>
+                    </@shiro.hasPermission>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="to" style="display:none;">
+    <@shiro.hasPermission name="{moduleCode}:edit">
+    <button type="button" class="btn btn-default" id="modify" name="modify" title="修改"><span
+            class="glyphicon glyphicon-edit"></span></button>
+</@shiro.hasPermission>
+<@shiro.hasPermission name="{moduleCode}:delete">
+<button type="button" class="btn btn-default" id="delete" name="delete" title="删除"><span
+        class="glyphicon glyphicon-remove"></span></button>
+</@shiro.hasPermission>
+</div>
+</body>
+<@foot/>
+<script src="${base}/styles/js/module/business/{lowerModuleCode}/list.js"></script>
+</html>

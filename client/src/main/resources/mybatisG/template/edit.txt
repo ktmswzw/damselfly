@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<#include "/console/layout/main.html"/>
+<html class="fuelux" >
+<@headEdit/>
+<body>
+<div class="container">
+    <form role="form" id="formSubmit" commandName="{lowerModuleCode}" class="form-horizontal"
+          data-fv-framework="bootstrap"
+          data-fv-message="This value is not valid"
+          data-fv-feedbackicons-valid="glyphicon glyphicon-ok"
+          data-fv-feedbackicons-invalid="glyphicon glyphicon-remove"
+          data-fv-feedbackicons-validating="glyphicon glyphicon-refresh">
+        <!-- Modal -->
+        <div class="panel panel-default">
+            <div class="panel-heading">{moduleName}</div>
+            <div class="panel-body">
+                <div class="control-group">
+                         {hiddenDiv}
+                </div>
+                {regionGroup}
+            </div>
+
+            <div class="panel-footer">
+                <div class="row control-group">
+                    <div class="col-sm-4 col-sm-offset-5">
+                        <div style="align-content: center">
+                            <button type="submit" id="save" class="btn btn-primary" >保存</button>
+                            <button type="button" id="back" class="btn btn-default">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+<!-- /.container -->
+
+</body>
+<@foot/>
+<script src="${base}/styles/js/module/business/{lowerModuleCode}/edit.js"></script>
+<script type="text/javascript">
+    var {lowerModuleCode} = JSON.parse(JSON.stringify(${{lowerModuleCode}}));
+</script>
+</html>

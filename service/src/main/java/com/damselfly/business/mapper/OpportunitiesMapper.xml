@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.damselfly.business.mapper.OpportunitiesMapper" >
+  <resultMap id="BaseResultMap" type="com.damselfly.business.entity.Opportunities" >
+    <id column="opportunities_id" property="opportunitiesId" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="left_word" property="leftWord" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    opportunities_id, email, left_word
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.damselfly.business.entity.OpportunitiesCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from business_opportunities
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from business_opportunities
+    where opportunities_id = #{opportunitiesId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from business_opportunities
+    where opportunities_id = #{opportunitiesId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.damselfly.business.entity.OpportunitiesCriteria" >
+    delete from business_opportunities
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.damselfly.business.entity.Opportunities" >
+    insert into business_opportunities (opportunities_id, email, left_word
+      )
+    values (#{opportunitiesId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{leftWord,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.damselfly.business.entity.Opportunities" >
+    insert into business_opportunities
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="opportunitiesId != null" >
+        opportunities_id,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="leftWord != null" >
+        left_word,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="opportunitiesId != null" >
+        #{opportunitiesId,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="leftWord != null" >
+        #{leftWord,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.damselfly.business.entity.OpportunitiesCriteria" resultType="java.lang.Integer" >
+    select count(*) from business_opportunities
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update business_opportunities
+    <set >
+      <if test="record.opportunitiesId != null" >
+        opportunities_id = #{record.opportunitiesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leftWord != null" >
+        left_word = #{record.leftWord,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update business_opportunities
+    set opportunities_id = #{record.opportunitiesId,jdbcType=INTEGER},
+      email = #{record.email,jdbcType=VARCHAR},
+      left_word = #{record.leftWord,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.damselfly.business.entity.Opportunities" >
+    update business_opportunities
+    <set >
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="leftWord != null" >
+        left_word = #{leftWord,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where opportunities_id = #{opportunitiesId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.damselfly.business.entity.Opportunities" >
+    update business_opportunities
+    set email = #{email,jdbcType=VARCHAR},
+      left_word = #{leftWord,jdbcType=VARCHAR}
+    where opportunities_id = #{opportunitiesId,jdbcType=INTEGER}
+  </update>
+</mapper>

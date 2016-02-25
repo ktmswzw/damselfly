@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<#include "layout.html"/>
+<html>
+<@head/>
+<body>
+<@north/>
+<div class="container">
+    <div class="row ">
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="jumbotron">
+
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong>Warning!</strong> 出错了，您的操作有误
+        </div>
+
+    </div>
+</div><!-- /.container -->
+
+<@south/>
+</body>
+<@foot/>
+<script type="text/javascript">
+    setTimeout(function() {
+        var localObj = window.location;
+        var contextPath = localObj.pathname.split("/")[1];
+        var basePath = localObj.protocol + "//" + localObj.host + "/" ;
+        var index = basePath;
+        window.location = index;
+    },2000);
+</script>
+</html>

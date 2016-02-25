@@ -1,0 +1,55 @@
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+    font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}
+.container
+{
+    width: 100%;
+    padding:0px;
+}
+.panel-body{
+    padding: 5px;
+}
+.table{
+    width: 100%;
+}
+.row
+{
+    margin-bottom: 5px;
+}
+.panel-body{
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;/*
+    overflow: hidden !important;
+    text-align: center;
+    position: relative;*/
+}
+.panel-footer{
+    padding: 5px 15px;
+}
+/* button bug*/
+/*.btnme{
+    padding:9px;
+}*/
+/*进度条*/
+.pgme{
+    margin-bottom:0px;
+}
+
+.fuelux .tree{
+    border: 1px solid #999999;
+    border-radius: 4px 4px 4px 4px;
+    padding: 0px 15px 0 15px;
+    overflow-x: auto;
+    overflow-y: auto;
+    position: relative;
+    list-style: none;
+}
+.form-control-feedback {
+    top: 0px;
+    right: 15px;
+}
+.has-feedback{
+    top: 0;
+    right: 15px;
+}

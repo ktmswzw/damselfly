@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<#include "/console/layout/layout.html"/>
+<html>
+<@head/>
+<link href="${base}/styles/css/module/login.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="login-div" id="loginBox">
+
+        <div id="logo">
+            <img src="${base}/styles/images/logo/logo.png" alt=""/>
+        </div>
+
+        <form role="form" name="formLogin" id="formLogin" method="post" commandName="login">
+            <div class="panel panel-primary">
+                <p></p>
+                <div class="panel-body">
+                    <input name="userKey" type="hidden" id="userKey"
+                           value="D1B5CC2FE46C4CC983C073BCA897935608D926CD32992B5900"
+                            />
+                    <input name="salt" type="hidden" id="salt"
+                           value="${salt}"
+                            />
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="email" id="username" name="username" class="form-control"
+                                   placeholder="登录邮箱 test@example.com" value="ktmswzw@163.com" required autofocus=""  tabindex="1">
+                            <span class="input-group-addon"  data-toggle="tooltip" title="保存登陆信息">
+                                <span class="glyphicon glyphicon-saved"></span>
+                                <input type="checkbox" id="rememberMe" name="rememberMe" data-size="mini">
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-lock"></span>
+                            </span>
+                            <input type="password" id="password" name="password" value="123456" class="form-control " placeholder="登录密码"
+                                   required  tabindex="2"/>
+                            <span class="input-group-addon"   data-toggle="tooltip" title="查看密码">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                    <input type="checkbox" id="show-password" data-size="mini" >
+                                </input>
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-qrcode"></span></span>
+                            <input type="text" id="captcha" name="captcha" class="form-control"
+                                   placeholder="验证码" autocomplete="false" required  tabindex="3"/>
+                            <span class="input-group-addon refresh" data-toggle="tooltip" title="点击刷新">
+                                <span class="glyphicon glyphicon-refresh" id="refresh"></span>
+                                <img id="Kaptcha" src=""/>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <div class="thumbnail">
+                            <img id="zxing" src="${base}/captcha/zxing/${salt}"/>
+                        </div>
+                    </div>
+
+                    <div id="hiddenMsg"></div>
+
+                    <div class="form-group">
+                        <div class="btn-group">
+                            <button type="submit" id="but_login" name="but_login" class="btn btn-primary"  tabindex="4"
+                                    autocomplete="off">
+                                <span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;进入
+                            </button>
+                            <button type="button" id="but_forget" name="but_forget" class="btn btn-primary "
+                                    data-toggle="tooltip" title="找回密码"
+                                    onclick="window.location.href='${base}/reset/start'" >
+                                <span class="glyphicon glyphicon-question-sign"></span>
+                            </button>
+                            <button type="button" id="but_back" name="but_back" class="btn btn-primary "
+                                    data-toggle="tooltip" title="返回首页"
+                                    onclick="window.location.href='${base}/'" >
+                                <span class="glyphicon glyphicon-home"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<@footlogin/>
+</body>
+</html>

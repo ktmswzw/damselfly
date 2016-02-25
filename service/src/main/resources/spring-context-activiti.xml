@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-4.0.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"
+        >
+
+
+    <bean id="demoDataGenerator" class="org.activiti.explorer.demo.DemoDataGenerator"  init-method="init">
+        <property name="processEngine" ref="processEngine" />
+        <property name="createDemoUsersAndGroups" value="false" />
+        <property name="createDemoProcessDefinitions" value="false" />
+        <property name="createDemoModels" value="false" />
+    </bean>
+
+    <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+        <property name="dataSource" ref="dataSource" />
+        <property name="dbIdentityUsed" value="false"/>
+        <property name="transactionManager" ref="transactionManager" />
+        <property name="databaseSchemaUpdate" value="false" />
+        <property name="jobExecutorActivate" value="false" />
+        <property name="history" value="audit" />
+        <!-- none  activity audit full-->
+        <property name="enableDatabaseEventLogging" value="true" /><!--
+        <property name="processDefinitionCacheLimit" value="10"/>-->
+        <property name="activityFontName" value="Microsoft YaHei"/>
+        <property name="labelFontName" value="SimSun"/>
+
+        <property name="mailServerHost" value="smtp.163.com" />
+        <property name="mailServerPort" value="465" />
+        <property name="mailServerUsername" value="ktmswzw7@163.com"/>
+        <property name="mailServerPassword" value="cam108twin850"/>
+        <property name="mailServerUseSSL" value="true"/>
+
+        <!-- 全局事件监听 -->
+        <property name="typedEventListeners">
+            <map>
+                <entry key="VARIABLE_CREATED" >
+                    <list>
+                        <ref bean="globalEventListener"/>
+                    </list>
+                </entry>
+            </map>
+        </property>
+        <property name="deploymentResources" value="classpath*:/deployments/*.zip" />
+
+        <!-- 自定义表单字段类型 -->
+        <property name="customFormTypes">
+            <list>
+                <bean class="org.activiti.explorer.form.UserFormType"/>
+                <bean class="org.activiti.explorer.form.ProcessDefinitionFormType"/>
+                <bean class="org.activiti.explorer.form.MonthFormType"/>
+            </list>
+        </property>
+
+    </bean>
+
+
+    <!-- 创建一个流程引擎bean -->
+    <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean" destroy-method="destroy">
+        <property name="processEngineConfiguration" ref="processEngineConfiguration" />
+    </bean>
+
+    <!-- 工作流仓储服务 -->
+    <bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+    <bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
+    <bean id="formService" factory-bean="processEngine" factory-method="getFormService"/>
+    <!-- 工作流唯一服务 -->
+    <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService"/>
+    <!--  工作流任务服务-->
+    <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+    <!--  工作流历史数据服务-->
+    <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
+    <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
+    <!--    <bean id="activitiRule" class="org.activiti.engine.test.ActivitiRule">
+            <property name="processEngine" ref="processEngine" />
+        </bean>-->
+
+</beans>

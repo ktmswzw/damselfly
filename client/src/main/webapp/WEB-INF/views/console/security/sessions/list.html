@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<#include "/console/layout/main.html"/>
+<@head/>
+<body>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">会话管理</div>
+        <div class="panel-body">
+            <table id="tableB" class="table-hover table-condensed table-striped">
+                <thead>
+                <tr>
+                    <th data-field="state" data-radio="true">ID</th>
+                    <th data-field="host" class="col-md-6">host</th>
+                    <th data-field="lastAccessTime" class="col-md-6">lastAccessTime</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div><!--/.container-->
+<div id="custom-toolbar">
+    <form role="form" name="form" id="form1">
+        <div class="form-inline" role="form">
+            <div class="row">
+
+
+
+                <div class="col-md-12">
+                    <div class="btn-group" id="do">
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="to" style="display:none;">
+    <button type="button" class="btn btn-default" id="force" name="force" title="踢出"><span
+            class="glyphicon glyphicon-log-out"></span></button>
+</div>
+</body>
+<@foot/>
+<script src="${base}/styles/js/module/security/sessions/list.js"></script>
+</html>

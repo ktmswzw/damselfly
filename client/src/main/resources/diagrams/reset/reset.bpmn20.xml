@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="reset" name="密码重置" isExecutable="true">
+    <startEvent id="start" name="密码重置" activiti:initiator="applyUserId" activiti:formKey="resetStart.form"/>
+    <serviceTask id="sendMail" name="发送重置邮件" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression>${to}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:expression>${sender}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[您发起了密码重置]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="html">
+          <activiti:expression>&lt;html>
+&lt;body>
+您好 &lt;br/>&lt;br/>
+&lt;p>您的重置密码链接&lt;/p>
+&lt;hr/>
+&lt;div>&lt;a href="${resetUrl}" target="_blank">点击&lt;/a>&lt;/div>
+&lt;hr/>
+&lt;div>如果无法直接打开，请复制链接到浏览器地址栏回车&lt;/div>
+&lt;span>${resetUrl}&lt;/span>
+&lt;/body>
+&lt;/html></activiti:expression>
+        </activiti:field>
+        <activiti:field name="charset">
+          <activiti:string><![CDATA[UTF-8]]></activiti:string>
+        </activiti:field>
+        <activiti:executionListener event="start" class="com.damselfly.business.utils.ResetMailListener"/>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="inputPwd" name="重置密码" activiti:assignee="applyUserId" />
+    <endEvent id="end" name="结束"/>
+    <sequenceFlow id="line1" sourceRef="start" targetRef="sendMail"/>
+    <sequenceFlow id="line2" sourceRef="sendMail" targetRef="inputPwd"/>
+    <sequenceFlow id="line3" sourceRef="inputPwd" targetRef="end"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_resetPassword">
+    <bpmndi:BPMNPlane bpmnElement="resetPassword" id="BPMNPlane_resetPassword">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="30.0" width="30.0" x="45.0" y="44.5"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sendMail" id="BPMNShape_sendMail">
+        <omgdc:Bounds height="58.0" width="89.0" x="118.5" y="30.5"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="inputPwd" id="BPMNShape_inputPwd">
+        <omgdc:Bounds height="58.0" width="89.0" x="240.0" y="30.5"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="28.0" width="28.0" x="370.0" y="45.5"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="line1" id="BPMNEdge_line1">
+        <omgdi:waypoint x="75.0" y="59.5"/>
+        <omgdi:waypoint x="118.5" y="59.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="line3" id="BPMNEdge_line3">
+        <omgdi:waypoint x="329.0" y="59.5"/>
+        <omgdi:waypoint x="370.0" y="59.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="line2" id="BPMNEdge_line2">
+        <omgdi:waypoint x="207.5" y="59.5"/>
+        <omgdi:waypoint x="240.0" y="59.5"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

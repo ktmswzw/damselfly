@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://code.alibabatech.com/schema/dubbo
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" >
+            <value>classpath:jdbc.properties</value>
+        </property>
+    </bean>
+    <dubbo:application name="${dubbo.application.name}" />
+
+    <!-- 使用multicast广播注册中心暴露服务地址 -->
+    <dubbo:registry  address="${dubbo.registry.address}" />
+
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="${dubbo.protocol.port}" />
+
+    <bean id="superDaoService" class="com.damselfly.common.baseservice.SuperDaoServiceImpl" />
+    <dubbo:service interface="com.damselfly.common.baseservice.SuperDaoService" ref="superDaoService" />
+
+    <bean id="userService" class="com.damselfly.service.core.impl.UserServiceImpl" /> <!-- 和本地服务一样实现远程服务 -->
+    <dubbo:service interface="com.damselfly.service.core.UserService" ref="userService" /> <!-- 增加暴露远程服务配置 -->
+
+    <bean id="roleService" class="com.damselfly.service.core.impl.RoleServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.RoleService" ref="roleService" />
+
+    <bean id="userRoleService" class="com.damselfly.service.core.impl.UserRoleServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.UserRoleService" ref="userRoleService" />
+
+    <bean id="moduleService" class="com.damselfly.service.core.impl.ModuleServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.ModuleService" ref="moduleService" />
+
+    <bean id="extMsgService" class="com.damselfly.service.core.impl.ExtMsgServiceImp" />
+    <dubbo:service interface="com.damselfly.service.core.ExtMsgService" ref="extMsgService" />
+
+    <bean id="organizationRoleService" class="com.damselfly.service.core.impl.OrganizationRoleServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.OrganizationRoleService" ref="organizationRoleService" />
+
+    <bean id="cultureService" class="com.damselfly.business.service.impl.CultureServiceImpl" />
+    <dubbo:service interface="com.damselfly.business.service.CultureService" ref="cultureService" />
+
+    <bean id="testService" class="com.damselfly.business.service.impl.TestServiceImpl" />
+    <dubbo:service interface="com.damselfly.business.service.TestService" ref="testService" />
+
+    <bean id="opportunitiesService" class="com.damselfly.business.service.impl.OpportunitiesServiceImpl" />
+    <dubbo:service interface="com.damselfly.business.service.OpportunitiesService" ref="opportunitiesService" />
+
+    <bean id="dictionaryService" class="com.damselfly.business.service.impl.DictionaryImpl" />
+    <dubbo:service interface="com.damselfly.business.service.DictionaryService" ref="dictionaryService" />
+
+    <bean id="workflowProcessDefinitionService" class="com.damselfly.service.activiti.WorkflowProcessDefinitionServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.activiti.WorkflowProcessDefinitionService" ref="workflowProcessDefinitionService" />
+
+    <bean id="workflowTraceService" class="com.damselfly.service.activiti.WorkflowTraceServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.activiti.WorkflowTraceService" ref="workflowTraceService" />
+
+    <bean id="dataControlService" class="com.damselfly.service.core.impl.DataControlServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.DataControlService" ref="dataControlService" />
+
+    <bean id="logEntityService" class="com.damselfly.service.core.impl.LogEntityServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.LogEntityService" ref="logEntityService" />
+
+    <bean id="permissionService" class="com.damselfly.service.core.impl.PermissionServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.PermissionService" ref="permissionService" />
+
+    <bean id="organizationService" class="com.damselfly.service.core.impl.OrganizationServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.OrganizationService" ref="organizationService" />
+
+    <bean id="portalService" class="com.damselfly.service.core.impl.PortalServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.PortalService" ref="portalService" />
+
+    <bean id="redisService" class="com.damselfly.service.core.impl.RedisServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.RedisService" ref="redisService" />
+
+    <bean id="resetService" class="com.damselfly.service.core.impl.ResetServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.ResetService" ref="resetService" />
+
+    <bean id="rolePermissionDataControlService" class="com.damselfly.service.core.impl.RolePermissionDataControlServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.RolePermissionDataControlService" ref="rolePermissionDataControlService" />
+
+    <bean id="rolePermissionService" class="com.damselfly.service.core.impl.RolePermissionServiceImpl" />
+    <dubbo:service interface="com.damselfly.service.core.RolePermissionService" ref="rolePermissionService" />
+
+</beans>

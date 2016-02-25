@@ -1,0 +1,29 @@
+package {javaPath}.service;
+
+import {javaPath}.entity.{moduleCode};
+import com.damselfly.common.mybatis.Page;
+import com.damselfly.exception.ServiceException;
+
+import java.util.List;
+
+/**
+ * Created by V on {Sysdate}.
+ */
+
+public interface {serviceName} {
+
+    Page findByPage(Page page, {moduleCode} {lowerModuleCode});
+
+    List<{moduleCode}> findAll(Page page, {moduleCode} {lowerModuleCode});
+
+    int countByExample(Page page,{moduleCode} {lowerModuleCode});
+
+    void save({moduleCode} {lowerModuleCode});
+
+    {moduleCode} get(int id);
+
+    void update({moduleCode} {lowerModuleCode});
+
+    void delete(int id);
+
+}

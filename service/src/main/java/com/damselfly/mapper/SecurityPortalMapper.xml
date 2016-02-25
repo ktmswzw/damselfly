@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.damselfly.mapper.SecurityPortalMapper">
+  <resultMap id="BaseResultMap" type="com.damselfly.entity.SecurityPortal">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="link_url" jdbcType="VARCHAR" property="linkUrl" />
+    <result column="json_url" jdbcType="VARCHAR" property="jsonUrl" />
+    <result column="url_type" jdbcType="INTEGER" property="urlType" />
+    <result column="show_type" jdbcType="INTEGER" property="showType" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="table_head" jdbcType="VARCHAR" property="tableHead" />
+    <result column="index_show" jdbcType="INTEGER" property="indexShow" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, title, link_url, json_url, url_type, show_type, state, table_head, index_show
+  </sql>
+  <select id="selectByExample" parameterType="com.damselfly.entity.SecurityPortalCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from security_portal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from security_portal
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from security_portal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.damselfly.entity.SecurityPortalCriteria">
+    delete from security_portal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.damselfly.entity.SecurityPortal">
+    insert into security_portal (id, title, link_url, 
+      json_url, url_type, show_type, 
+      state, table_head, index_show
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{linkUrl,jdbcType=VARCHAR}, 
+      #{jsonUrl,jdbcType=VARCHAR}, #{urlType,jdbcType=INTEGER}, #{showType,jdbcType=INTEGER}, 
+      #{state,jdbcType=INTEGER}, #{tableHead,jdbcType=VARCHAR}, #{indexShow,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.damselfly.entity.SecurityPortal">
+    insert into security_portal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="linkUrl != null">
+        link_url,
+      </if>
+      <if test="jsonUrl != null">
+        json_url,
+      </if>
+      <if test="urlType != null">
+        url_type,
+      </if>
+      <if test="showType != null">
+        show_type,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="tableHead != null">
+        table_head,
+      </if>
+      <if test="indexShow != null">
+        index_show,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null">
+        #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="jsonUrl != null">
+        #{jsonUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="urlType != null">
+        #{urlType,jdbcType=INTEGER},
+      </if>
+      <if test="showType != null">
+        #{showType,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="tableHead != null">
+        #{tableHead,jdbcType=VARCHAR},
+      </if>
+      <if test="indexShow != null">
+        #{indexShow,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.damselfly.entity.SecurityPortalCriteria" resultType="java.lang.Integer">
+    select count(*) from security_portal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update security_portal
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkUrl != null">
+        link_url = #{record.linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsonUrl != null">
+        json_url = #{record.jsonUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.urlType != null">
+        url_type = #{record.urlType,jdbcType=INTEGER},
+      </if>
+      <if test="record.showType != null">
+        show_type = #{record.showType,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.tableHead != null">
+        table_head = #{record.tableHead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indexShow != null">
+        index_show = #{record.indexShow,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update security_portal
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      link_url = #{record.linkUrl,jdbcType=VARCHAR},
+      json_url = #{record.jsonUrl,jdbcType=VARCHAR},
+      url_type = #{record.urlType,jdbcType=INTEGER},
+      show_type = #{record.showType,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=INTEGER},
+      table_head = #{record.tableHead,jdbcType=VARCHAR},
+      index_show = #{record.indexShow,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.damselfly.entity.SecurityPortal">
+    update security_portal
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null">
+        link_url = #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="jsonUrl != null">
+        json_url = #{jsonUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="urlType != null">
+        url_type = #{urlType,jdbcType=INTEGER},
+      </if>
+      <if test="showType != null">
+        show_type = #{showType,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="tableHead != null">
+        table_head = #{tableHead,jdbcType=VARCHAR},
+      </if>
+      <if test="indexShow != null">
+        index_show = #{indexShow,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.damselfly.entity.SecurityPortal">
+    update security_portal
+    set title = #{title,jdbcType=VARCHAR},
+      link_url = #{linkUrl,jdbcType=VARCHAR},
+      json_url = #{jsonUrl,jdbcType=VARCHAR},
+      url_type = #{urlType,jdbcType=INTEGER},
+      show_type = #{showType,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      table_head = #{tableHead,jdbcType=VARCHAR},
+      index_show = #{indexShow,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+</mapper>

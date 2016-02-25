@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"
+	default-lazy-init="true">
+
+		<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
+	    <property name="config">  
+	        <bean class="com.google.code.kaptcha.util.Config">  
+	            <constructor-arg>  
+	                <props>  
+	                    <prop key="kaptcha.border">no</prop>  
+	                    <prop key="kaptcha.border.color">105,179,90</prop>  
+	                    <prop key="kaptcha.textproducer.font.color">black</prop>  
+	                    <prop key="kaptcha.noise.color">black</prop>  
+	                    <prop key="kaptcha.background.clear.to">white</prop>  
+	                    <prop key="kaptcha.image.width">85</prop>  
+	                    <prop key="kaptcha.textproducer.font.size">23</prop>  
+	                    <prop key="kaptcha.image.height">35</prop>  
+	                    <prop key="kaptcha.border.thickness">5</prop>  
+	                    <prop key="kaptcha.session.key">code</prop>  
+	                    <prop key="kaptcha.textproducer.char.length">1</prop>
+	                    <prop key="kaptcha.textproducer.font.names">Arial, Courier</prop> 
+	                    <prop key="kaptcha.GimpyEngine">WaterRipple</prop> 
+	                    <prop key="kaptcha.producer.impl">com.google.code.kaptcha.impl.DefaultKaptcha</prop> 
+	                    <prop key="kaptcha.textproducer.impl">com.google.code.kaptcha.text.impl.DefaultTextCreator</prop> 
+	                    <prop key="kaptcha.textproducer.char.string">abcde2345678gfynmnpwx</prop> 
+	                    <prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
+	                    <prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.ShadowGimpy</prop>
+	                    <prop key="kaptcha.background.impl">com.google.code.kaptcha.impl.DefaultBackground</prop>
+	                </props>  
+	            </constructor-arg>  
+	        </bean>  
+	    </property>  
+	</bean>
+	
+</beans>

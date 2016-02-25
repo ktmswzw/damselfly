@@ -1,0 +1,22 @@
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+    font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}
+.container
+{
+    width: 100%;
+    padding:0px;
+}
+.panel-body{
+    padding: 5px;
+}
+.table{
+    width: 100%;
+}
+/* button bug*/
+/*.btnme{
+    padding:9px;
+}*/
+/*进度条*/
+.pgme{
+    margin-bottom:0px;
+}

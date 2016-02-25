@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<#include "/sale/layout.html"/>
+<html>
+<@head/>
+<body>
+<@north/>
+<!-- Carousel
+================================================== -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>内容简介</h1>
+                    <p>界面简洁，简单易用；图形化资源管理及流程提醒</p>
+                    <p><a class="btn btn-lg btn-primary" href="${base}/login" role="button">在线体验</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>一体多能</h1>
+                    <p>IDC&middot;OA&middot;CRM 一步到位，内含公文管理、客户管理，服务维系、投诉管理等</p>
+                    <p><a class="btn btn-lg btn-primary" href="${base}/login" role="button">在线体验</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>个性化定制</h1>
+                    <p>源码开放，二次开发或者联系我们进行定制开发，满足不同的客户需求</p>
+                    <p><a class="btn btn-lg btn-primary" href="${base}/contact" role="button">联系我们</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div><!-- /.carousel -->
+<@south/>
+</body>
+<@foot/>
+<script type="text/javascript" charset="utf-8">
+    var current = "${(current)!}";
+</script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<#include "/console/layout/main.html"/>
+<html class="fuelux">
+<@headEdit/>
+<body>
+<div class="container">
+    <form role="form" id="formSubmit" commandName="rolePermission" class="form-horizontal"
+          data-fv-framework="bootstrap"
+          data-fv-message="This value is not valid"
+          data-fv-feedbackicons-valid="glyphicon glyphicon-ok"
+          data-fv-feedbackicons-invalid="glyphicon glyphicon-remove"
+          data-fv-feedbackicons-validating="glyphicon glyphicon-refresh">
+        <!-- Modal -->
+        <div class="panel panel-default">
+            <div class="panel-heading">角色管理</div>
+            <div class="panel-body">
+                <div class="control-group">
+                    <input type="hidden" id="roleId" value="${roleid}">
+                    <input type="hidden" id="rolePermission" value="">
+                </div>
+
+
+                    <div class="row control-group">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        </div>
+                </div>
+
+            </div>
+
+            <div class="panel-footer">
+                <div class="row control-group">
+                    <div class="col-sm-4 col-sm-offset-5">
+                        <div style="align-content: center">
+                            <button type="submit" id="save" class="btn btn-primary">保存</button>
+                            <button type="button" id="back" class="btn btn-default">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+<@foot/>
+<script src="${base}/styles/js/module/security/role/permission.js"></script>
+<script type="text/javascript">
+    var permissionMe = JSON.parse(JSON.stringify(${PermissionList}));
+</script>
+</html>

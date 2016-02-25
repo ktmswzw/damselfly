@@ -1,0 +1,79 @@
+package {javaPath}.service.impl;
+
+import {javaPath}.entity.{moduleCode};
+import {javaPath}.entity.{moduleCode}Criteria;
+import {javaPath}.mapper.{moduleCode}Mapper;
+import {javaPath}.service.{serviceName};
+import com.damselfly.common.basedao.BaseDao;
+import com.damselfly.common.baseservice.BaseService;
+import com.damselfly.common.mybatis.Page;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by V on {Sysdate}.
+ */
+@Service("{serviceName}")
+@Transactional
+@SuppressWarnings("unchecked")
+public class {serviceImplName}  extends BaseService implements {serviceName} {
+
+
+    @Override
+    public Page findByPage(Page page, {moduleCode} {lowerModuleCode}) {
+        page.setCount(countByExample(page,{lowerModuleCode}));
+        List<{moduleCode}> list= baseDao.selectByPage("{javaPath}.mapper.{moduleCode}Mapper."+BaseDao.SELECT_BY_EXAMPLE, getCriteria(page,{lowerModuleCode}),page);
+        if(list!=null)
+            return page.setRows(list);
+        else
+            return null;
+    }
+    
+    @Override
+    public List<{moduleCode}> findAll(Page page, {moduleCode} {lowerModuleCode}) {
+        return baseDao.selectList("{javaPath}.mapper.{moduleCode}Mapper."+BaseDao.SELECT_BY_EXAMPLE, getCriteria(page,{lowerModuleCode}));
+    }
+
+    @Override
+    public int countByExample(Page page, {moduleCode} {lowerModuleCode}) {
+        return baseDao.getMapper({moduleCode}Mapper.class).countByExample(getCriteria(page,{lowerModuleCode}));
+    }
+
+    public {moduleCode}Criteria getCriteria(Page page,{moduleCode} {lowerModuleCode})
+    {
+        {moduleCode}Criteria criteria = new {moduleCode}Criteria();
+        {moduleCode}Criteria.Criteria cri = criteria.createCriteria();
+        if ({lowerModuleCode} != null) {
+                {columnsConditionJavaCode}
+        }
+        if(page != null && page.getSort() != null && page.getOrder() != null){
+            criteria.setOrderByClause(page.getSort() + " " + page.getOrder());
+        }
+        return criteria;
+    }
+
+    @Override
+    public void save({moduleCode} {lowerModuleCode}) {
+        baseDao.getMapper({moduleCode}Mapper.class).insertSelective({lowerModuleCode});
+    }
+
+    @Override
+    public {moduleCode} get(int id) {
+        return baseDao.getMapper({moduleCode}Mapper.class).selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void update({moduleCode} {lowerModuleCode}) {
+        baseDao.getMapper({moduleCode}Mapper.class).updateByPrimaryKeySelective({lowerModuleCode});
+    }
+
+    @Override
+    public void delete(int id) {
+        baseDao.getMapper({moduleCode}Mapper.class).deleteByPrimaryKey(id);
+    }
+}

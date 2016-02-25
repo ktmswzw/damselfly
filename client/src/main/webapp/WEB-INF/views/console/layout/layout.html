@@ -1,0 +1,103 @@
+<!--head css-->
+<#macro head>
+    <head>
+        <title>iManon OA CRM B2C</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel="icon" href="${base}/styles/images/logo/muyu.png" type="image/png">
+        <link href="${base}/styles/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="${base}/styles/css/bootstrap.min.css" rel="stylesheet">
+        <link href="${base}/styles/css/bootstrap-switch.css" rel="stylesheet">
+        <link href="${base}/styles/css/module/index.css" rel="stylesheet">
+        <script src="${base}/styles/js/libs/ie-emulation-modes-warning.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    </head>
+</#macro>
+<!--north head info-->
+
+<#macro loadDiv>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <iframe id="loading" class="loading" src="${base}/console/index/loading" scrolling="no" allow-scripts allow-same-origin allow-forms allow-top-navigation></iframe>
+            </div>
+        </div>
+    </div>
+</#macro>
+
+<#macro north>
+    <div class="container" >
+        <div class="navbar-wrapper" >
+            <nav class="navbar navbar-inverse navbar-fixed-top resizeScroll" role="navigation" id="topNavBar">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle visible-button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="glyphicon glyphicon-chevron-down"  id="top_memu"></span>
+                            <span class="pull-right visible-xs label"><span class="glyphicon glyphicon-cog"></span></span>
+                        </button>
+                        <button type="button" class="navbar-toggle visible-button" data-toggle="offcanvas" data-target="#offcanvas" aria-expanded="false" aria-controls="offcanvas">
+                            <span class="glyphicon glyphicon-chevron-right " id="left_memu"></span>
+                            <span class="pull-right visible-xs label"><span class="glyphicon glyphicon-th-list"></span></span>
+                        </button>
+                        <div >
+                            <a href="${base}/">
+                                <img src="${base}/styles/images/logo/logo.png" alt="" class="logo" />
+                            </a>
+                        </div>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li ><a href="${base}/console/info"><span class="glyphicon glyphicon-user"></span>&nbsp;<span class="text">控制&nbsp;</span></a></li>
+                            <li ><a href="${base}/console/index"><span class="glyphicon glyphicon-comment"></span>&nbsp;<span class="text">消息&nbsp;</span><span class="badge">31</span></a></li>
+                            <li ><a href="${base}/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;<span class="text">登出&nbsp;</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</#macro>
+<!--west menu list-->
+<#macro west>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    </div>
+</#macro>
+<!--crumb -->
+<#macro crumb>
+    <ol class="breadcrumb" id="crumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+    </ol>
+</#macro>
+<!--south copy right-->
+<#macro south>
+    <hr>
+    <footer>
+        <p>&copy; Company 2014</p>
+    </footer>
+</#macro>
+<!--east main-->
+<#macro east>
+
+</#macro>
+<!--foot js-->
+<#macro foot>
+    <script src="${base}/styles/js/require.js"></script>
+    <script type="text/javascript">
+        var WEB_GLOBAL_CTX = "${base}"; //全局上下文
+    </script>
+    <script src="${base}/styles/js/module/config.js"></script>
+    <script src="${base}/styles/js/module/index.js"></script>
+</#macro>
+
+<#macro footlogin>
+    <script src="${base}/styles/js/require.js"></script>
+    <script type="application/javascript">
+        var WEB_GLOBAL_CTX = "${base}"; //全局上下文
+    </script>
+    <script src="${base}/styles/js/module/config.js"></script>
+    <script src="${base}/styles/js/module/login.js"></script>
+</#macro>
+
+<#macro loading>
+</#macro>
